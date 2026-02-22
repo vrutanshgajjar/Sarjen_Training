@@ -1,0 +1,438 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+ 
+body{
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+}
+ 
+.main{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:50px;
+    padding:60px 8%;
+}
+
+.product{
+    background:#ffffff;
+    width:260px;
+    padding:20px;
+    border-radius:18px;
+    text-align:center;
+    transition:0.4s ease;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+ 
+.product:hover{
+    transform:translateY(-12px);
+    box-shadow:0 20px 35px rgba(0,0,0,0.25);
+}
+ 
+.product img{
+    width: 100%;
+    height: 300px;      
+    border-radius: 14px;
+    border: 1px solid black;
+}
+ 
+.product:hover img{
+    transform:scale(1.05);
+}
+ 
+.product h3{
+    margin:15px 0 8px;
+    font-size:18px;
+}
+ 
+.product p{
+    color:#3b82f6;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+ 
+.product a{
+    display:inline-block;
+    padding:10px 18px;
+    border-radius:10px;
+    background:linear-gradient(45deg,#3b82f6,#2563eb);
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    transition:0.3s;
+}
+ 
+.product a:hover{
+    box-shadow:0 8px 18px rgba(37,99,235,0.4);
+}
+ 
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 5px 10px;  
+    background: #EFDCCA;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+ 
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:22px;
+    font-weight:bold;
+    color:#111827;
+}
+ 
+.logo img{
+    width:80px;  
+    height:80px;
+    object-fit:contain;
+}
+ 
+.brand{
+    font-family: fantasy;
+    font-weight: 600;
+    font-size:40px;
+    color: darkolivegreen;
+}
+ 
+.nav-links{
+    list-style:none;
+    display:flex;
+    gap:50px;
+}
+ 
+.nav-links a{
+    text-decoration:none;
+    color:#374151;
+    font-size: 15px;
+    justify-content: center;
+}
+ 
+.nav-links a:hover{
+    color:#3b82f6;
+}
+
+.nav-actions a{
+    margin-left:15px;
+    text-decoration:none;
+    padding:6px 14px;
+    border-radius:6px;
+    font-size:14px;
+}
+ 
+.login{
+    background:#3b82f6;
+    color:white;
+}
+ 
+.login:hover{
+    background:#2563eb;
+}
+ 
+.search-box{
+    display:flex;
+    align-items:center;
+    border:1px solid #ddd;
+    border-radius:25px;
+    overflow:hidden;
+    background:#f9fafb;
+}
+ 
+.search-box input{
+    border:none;
+    padding:8px 12px;
+    outline:none;
+    width:560px;
+    background:transparent;
+}
+ 
+.search-box button{
+    border:none;
+    background:#3b82f6;
+    color:white;
+    padding:8px 14px;
+    cursor:pointer;
+}
+ 
+.search-box button:hover{
+    background:#2563eb;
+}
+ 
+.about{
+    padding:40px 20px;
+    background:#f2f2f2;
+    text-align:center;
+}
+ 
+.about h2{
+    margin-bottom:15px;
+    font-size:24px;
+}
+ 
+.about p{
+    margin-bottom:10px;
+    color:#444;
+}
+ 
+.about{
+    padding:70px 8%;
+    background:#f9fafb;
+}
+ 
+.about-container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:50px;
+    flex-wrap:wrap;
+}
+ 
+.about-text{
+    flex:1;
+}
+ 
+.about-text h2{
+    font-size:32px;
+    margin-bottom:20px;
+    color:#111827;
+}
+ 
+.about-text p{
+    margin-bottom:15px;
+    color:#555;
+    line-height:1.6;
+}
+ 
+.about-btn{
+    display:inline-block;
+    margin-top:10px;
+    padding:10px 20px;
+    background:#3b82f6;
+    color:white;
+    border-radius:8px;
+    text-decoration:none;
+    transition:0.3s;
+}
+ 
+.about-btn:hover{
+    background:#2563eb;
+}
+ 
+.about-image{
+    flex:1;
+}
+ 
+.about-image img{
+    width:100%;
+    max-width:450px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+ 
+.contact{
+    background-image: url(img/img11.jpg);
+    padding:60px 20px;
+    background-size: cover;
+    position:relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+ 
+.contact::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(231, 222, 222, 0);
+    z-index:0;
+}
+
+.contact-container,
+.contact h2{
+    display: flex;
+    justify-content: center;
+    position:relative;
+    z-index:1;
+    color:white;
+}
+ 
+.contact-container{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:40px;
+}
+ 
+.contact-info p{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:15px 0;
+}
+ 
+.icon{
+    width:22px;
+    height:22px;
+}
+ 
+.contact-info a{
+    color:white;
+    text-decoration:none;
+}
+ 
+.contact-info a:hover{
+    text-decoration:underline;
+}
+ 
+.contact-form input,
+.contact-form textarea{
+    width:100%;
+    padding:8px;
+    margin-bottom:10px;
+    border:none;
+    border-radius:5px;
+}
+ 
+.contact-form button{
+    padding:8px 15px;
+    border:none;
+    border-radius:5px;
+    background:#3b82f6;
+    color:white;
+    cursor:pointer;
+}
+ 
+.contact-form button:hover{
+    background:#2563eb;
+}
+ 
+ 
+.contact-info p{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:10px 0;
+}
+ 
+.icon{
+    width:20px;
+    height:20px;
+}
+ 
+.contact-info a{
+    text-decoration:none;
+    color:black;
+}
+ 
+.contact-info a:hover{
+    color:#3b82f6;
+}
+
+.btn{
+    display:inline-block;
+    padding:8px 15px;
+    background:#3b82f6;
+    color:white;
+    border-radius:6px;
+    text-decoration:none;
+    transition:0.3s;
+}
+ 
+.btn:hover{
+    background:#2563eb;
+}
+ 
+.details{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+    backdrop-filter: blur(3px);
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:1;
+}
+ 
+.details:target{
+    display:flex;
+}
+ 
+.details-box{
+    background:white;
+    width:380px;
+    border-radius:15px;
+    padding:25px;
+    text-align:center;
+    position:relative;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+    animation:fadeIn 0.3s ease;
+}
+ 
+/* Image */
+.details-box img{
+    width:100%;
+    height:400px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.price{
+    color:#3b82f6;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.info{
+    color:#555;
+    font-size:14px;
+    margin-bottom:15px;
+}
+ 
+.buy-btn{
+    display:inline-block;
+    padding:8px 18px;
+    background:#111827;
+    color:white;
+    margin: 12px;
+    border-radius:6px;
+    text-decoration:none;
+}
+ 
+.buy-btn:hover{
+    background:#000;
+}
+ 
+.close{
+    position:absolute;
+    top:12px;
+    right:15px;
+    font-size:22px;
+    text-decoration:none;
+    color:#333;
+}
+ 
+.close:hover{
+    color:red;
+}
+ 
+.footer{
+    background:#EFDCCA;
+    color:black;
+    text-align:center;
+    padding:15px 0;
+    font-size:14px;
+}
+ 
+ 
+.contact-info{
+    margin: 20px;
+    color: black;
+}
