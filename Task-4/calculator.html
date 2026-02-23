@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Calculator</title>
+    <style>
+    .calculator {
+      max-width: 400px;
+      margin: auto;
+      background:white;
+      padding: 20px;
+      border-radius: 8px;
+      border: 2px solid black;
+    }
+    h2 {
+      text-align: center;
+    }
+    .clc {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 5px;
+      background: whitesmoke;
+    }
+    label {
+      display: block;
+      margin: 8px 0;
+    }
+    input, select, button {
+      padding: 5px;
+      margin-top: 5px;
+    }
+    button {
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Mini Calculator</h2>
+  
+        <label>Number 1: <input type="number" id="a" value="0"></label>
+        <label>Number 2: <input type="number" id="b" value="0"></label>
+    
+        <div class="clc">
+          <h3>Dropdown Calculator</h3>
+          <label>Operation:
+            <select id="dd">
+              <option value="add">Add</option>
+              <option value="subtract">Subtract</option>
+              <option value="multiply">Multiply</option>
+              <option value="divide">Divide</option>
+            </select>
+          </label>
+          <button onclick="Dropdown()">Calculate</button>
+          <div class="result" id="resultDropdown">Result: </div>
+        </div>
+
+        <div class="clc">
+          <h3>Radio Button Calculator</h3>
+          <label><input type="radio" name="rad" value="add"> Add</label>
+          <label><input type="radio" name="rad" value="subtract"> Subtract</label>
+          <label><input type="radio" name="rad" value="multiply"> Multiply</label>
+          <label><input type="radio" name="rad" value="divide"> Divide</label>
+          <button onclick="Radio()">Calculate</button>
+          <div class="result" id="resultRadio">Result: </div>
+        </div>
+
+        <div class="clc">
+          <h3>Button Calculator</h3>
+          <button onclick="ButtonCalc('add')">Add</button>
+          <button onclick="ButtonCalc('subtract')">Subtract</button>
+          <button onclick="ButtonCalc('multiply')">Multiply</button>
+          <button onclick="ButtonCalc('divide')">Divide</button>
+          <div class="result" id="resultButton">Result: </div>
+        </div>
+
+      <script>
+        function calc(a,b,op) {
+          switch(op) {
+            case 'add': return a+b;
+            case 'subtract': return a-b;
+            case 'multiply': return a*b;
+            case 'divide': return b!==0 ? a/b:'Error (Divide by 0)';
+            default: return 'No operation selected';
+          }
+        }
+    
+        function Dropdown() {
+          const a = parseFloat(document.getElementById('a').value);
+          const b = parseFloat(document.getElementById('b').value);
+          const op = document.getElementById('dd').value;
+          document.getElementById('resultDropdown').innerText = 'Result: '+ calc(a,b,op);
+        }
+
+        function Radio() {
+          const a = parseFloat(document.getElementById('a').value);
+          const b = parseFloat(document.getElementById('b').value);
+          let op = document.querySelector('input[name="rad"]:checked')?.value;
+          document.getElementById('resultRadio').innerText = 'Result: '+ calc(a,b,op);
+        }
+
+        function ButtonCalc(op) {
+          const a = parseFloat(document.getElementById('a').value);
+          const b = parseFloat(document.getElementById('b').value);
+          document.getElementById('resultButton').innerText = 'Result: '+ calc(a,b,op);
+        }
+      </script>
+</body>
+</html>
