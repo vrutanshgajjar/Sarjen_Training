@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function dosum(){
+            var a = document.getElementById("t1").value;
+            var b = document.getElementById("t2").value;
+
+            if(!a){
+                alert("Enter No1");
+            }
+            else if(isNaN(a)){
+                alert("Please enter only number in No1");
+            }
+            else if(!b){
+                alert("Enter No2");
+            }
+            else if(isNaN(b)){
+                alert("Please enter only number in No2");
+            }
+            else{
+                var c = parseInt(a) + parseInt(b);
+                document.getElementById("ans").innerHTML = "Sum is " + c;
+            }
+        }
+    </script>
+</head>
+<body>
+    No1 : <input type="text" id="t1" name="n1">
+    No2 : <input type="text" name="n2" id="t2">
+    <input type="button" onclick="dosum()" value="clickme">
+    <p id="ans"></p>
+</body>
+</html>
