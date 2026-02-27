@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .item{
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            display: inline-block;
+            text-align: center;
+            background: aquamarine;
+        }
+        .item img{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Smartphones</h2>
+    <div id="prod"></div>
+    <script>
+    const products = [
+        {product:"iPhone",price:100000,image:"img/img1.jpg"},
+        {product:"Samsung",price:90000,image:"img/img2.jpg"},
+        {product:"Vivo",price:40000,image:"img/img3.jpg"},
+        {product:"Oppo",price:35000,image:"img/img4.jpg"},
+        {product:"Realme",price:30000,image:"img/img5.jpg"},
+    ];
+
+    let html = "";
+    for (let i = 0; i < products.length; i++){
+        html += `<div class="item">
+        <h3>${products[i].product}</h3>
+        <img src="${products[i].image}" alt="${products[i].product}" width="100">
+        <p>Price: ₹${products[i].price}</p>
+        </div>`;
+    }
+    prod.innerHTML = html;
+    </script>
+</body>
+</html>
