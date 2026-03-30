@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number</title>
+</head>
+<body>
+    <h2>Guess the Number Game</h2>
+    <p>Enter a number between 1 and 10:</p>
+    <input type="number" id="guess" min="1" max="10">
+    <button onclick="checkGuess()">Submit</button>
+
+    <h3>Result:</h3>
+    <div id="result"></div>
+
+    <script>
+        const randnum = Math.floor(Math.random() * 10) + 1;
+        function checkGuess() {
+            const usernum = Number(document.getElementById("guess").value);
+            const res = document.getElementById("result");
+
+            if (!usernum || usernum < 1 || usernum > 10) {
+                res.innerHTML = "Please enter a number between 1 and 10.";
+                return;
+            }
+
+            if (usernum === randnum) {
+                res.innerHTML = `Success value: ${randnum}</p>`;
+            } else {
+                res.innerHTML = `Failure value: ${randnum}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

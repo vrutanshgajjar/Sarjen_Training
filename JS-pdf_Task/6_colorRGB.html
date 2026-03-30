@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RGB Color Maker</title>
+  <style>
+  body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin-top: 50px;
+  }
+
+  #colorBox {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    border: 2px solid #000;
+  }
+
+  .slider-container {
+    margin: 10px 0;
+  }
+
+  input[type="range"] {
+    width: 200px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+</style>
+</head>
+<body>
+  <h2>RGB Color Maker</h2>
+
+<div id="colorBox"></div>
+<p id="colorCode">rgb(0, 0, 0)</p>
+
+<div class="slider-container">
+  <label for="red">Red: <span id="redValue">0</span></label>
+  <input type="range" id="red" min="0" max="255" value="0">
+</div>
+
+<div class="slider-container">
+  <label for="green">Green: <span id="greenValue">0</span></label>
+  <input type="range" id="green" min="0" max="255" value="0">
+</div>
+
+<div class="slider-container">
+  <label for="blue">Blue: <span id="blueValue">0</span></label>
+  <input type="range" id="blue" min="0" max="255" value="0">
+</div>
+
+<script>
+  const redSlider = document.getElementById("red");
+  const greenSlider = document.getElementById("green");
+  const blueSlider = document.getElementById("blue");
+
+  const redValue = document.getElementById("redValue");
+  const greenValue = document.getElementById("greenValue");
+  const blueValue = document.getElementById("blueValue");
+
+  const colorBox = document.getElementById("colorBox");
+  const colorCode = document.getElementById("colorCode");
+
+  function updateColor() {
+    const r = redSlider.value;
+    const g = greenSlider.value;
+    const b = blueSlider.value;
+
+    redValue.textContent = r;
+    greenValue.textContent = g;
+    blueValue.textContent = b;
+
+    const rgb = `rgb(${r}, ${g}, ${b})`;
+    colorBox.style.backgroundColor = rgb;
+    colorCode.textContent = rgb;
+  }
+
+  redSlider.addEventListener("input", updateColor);
+  greenSlider.addEventListener("input", updateColor);
+  blueSlider.addEventListener("input", updateColor);
+
+  updateColor();
+</script>
+</body>
+</html>

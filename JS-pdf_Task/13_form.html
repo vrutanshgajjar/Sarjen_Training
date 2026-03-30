@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    Enter Name : <input type="text" id="name"> <br/><br/>
+    Enter Mobile No : <input type="number" id="mobile"> <br/><br/>
+    Gender : 
+    <input type="radio" name="gender" id="male" value="Male">Male 
+    <input type="radio" name="gender" id="female" value="Female">Female
+    <br/><br/>
+    Hobby : 
+    <input type="checkbox" name="hobby" id="reading" value="Reading">Reading
+    <input type="checkbox" name="hobby" id="dancing" value="Dancing">Dancing
+    <input type="checkbox" name="hobby" id="singing" value="Singing">Singing
+    <br/><br/>
+    City : 
+    <select id="city">
+        <option value="">--Select--</option>
+        <option value="ahmedabad">Ahmedabad</option>
+        <option value="surat">Surat</option>
+    </select>
+    <br /><br />
+    <input type="button" value="Submit Data" onclick="submitData()">
+
+    <h2>Submitted Data:</h2>
+    <div id="result"></div>
+
+    <script>
+        function submitData() {
+            const name = document.getElementById("name").value;
+            const mobile = document.getElementById("mobile").value;
+          
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const genderValue = gender ? gender.value : "Not selected";
+
+            const hobbies = Array.from(document.querySelectorAll('input[name="hobby"]:checked')).map(cb => cb.value);
+            const hobbiesText = hobbies.length ? hobbies.join(", ") : "None";
+            const city = document.getElementById("city").value || "Not selected";
+            
+            document.getElementById("result").innerHTML = `
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Mobile:</strong> ${mobile}</p>
+                <p><strong>Gender:</strong> ${genderValue}</p>
+                <p><strong>Hobbies:</strong> ${hobbiesText}</p>
+                <p><strong>City:</strong> ${city}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

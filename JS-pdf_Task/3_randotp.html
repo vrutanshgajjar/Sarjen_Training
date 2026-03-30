@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<h2>Random OTP Generator</h2>
+<div id="otp">----</div>
+<button id="generateBtn">Generate OTP</button>
+
+<script>
+function generateOTP(length = 4) {
+  let otp = '';
+  for (let i = 0; i < length; i++) {
+    otp += Math.floor(Math.random() * 10); 
+  }
+  return otp;
+}
+
+const otpDisplay = document.getElementById("otp");
+otpDisplay.textContent = generateOTP();
+
+document.getElementById("generateBtn").addEventListener("click", () => {
+  otpDisplay.textContent = generateOTP();
+});
+</script>
+
+</body>
+</html>

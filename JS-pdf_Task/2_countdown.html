@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let a = 0;
+        let b = null;
+        function start(){
+            if(b) return;   
+            b = setInterval(() => {
+                document.getElementById("result").innerHTML = a
+                a++;
+                if (a > 10) {
+                    clearInterval(b); 
+                    b = null;
+                }
+            }, 1000);
+        }
+        function stop(){
+            a = 0
+            if (b){
+            clearInterval(b);
+            b = null;
+            }   
+        }
+        function pause(){
+            if(b){
+                clearInterval(b)
+                b = null;
+            }
+        }
+    </script>   
+</head>
+<body>
+    <button onclick="start()">Start</button>
+    <button onclick="pause()">Pause</button>
+    <button onclick="stop()">Stop</button>
+    <br>
+    <p id="result"></p>
+</body>
+</html>

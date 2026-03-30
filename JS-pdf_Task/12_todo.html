@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<h2>To-Do List</h2>
+
+<input type="text" id="taskInput" placeholder="Enter new task">
+<button id="add">Add Task</button>
+
+<ul id="taskList"></ul>
+
+<script>
+const taskInput = document.getElementById("taskInput");
+const add = document.getElementById("add");
+const taskList = document.getElementById("taskList");
+
+function addTask() {
+  const task = taskInput.value.trim();
+  if (!task) return;
+
+  const li = document.createElement("li");
+
+  const span = document.createElement("span");
+  span.textContent = task;
+  li.appendChild(span);
+
+  const edit = document.createElement("button");
+  edit.textContent = "Edit";
+  edit.style.marginLeft = "10px";
+  edit.addEventListener("click", () => {
+    const newText = prompt("Edit task:", span.textContent);
+    if (newText !== null) {
+      span.textContent = newText.trim() || span.textContent;
+    }
+  });
+  li.appendChild(edit);
+
+  const del = document.createElement("button");
+  del.textContent = "Delete";
+  del.style.marginLeft = "5px";
+  del.addEventListener("click", () => {
+    li.remove();
+  });
+  li.appendChild(del);
+
+  taskList.appendChild(li);
+  taskInput.value = "";
+}
+
+add.addEventListener("click", addTask);
+
+taskInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") addTask();
+});
+</script>
+
+</body>
+</html>
+

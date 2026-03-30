@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>GST Calculator</h2>
+
+    Amount: <input type="number" id="amt" placeholder="Enter amt"><br><br>
+    GST Rate (%): <input type="number" id="gst" placeholder="Enter GST rate"><br><br>
+
+    <button onclick="calculateGST()">Calculate GST</button>
+
+    <h3>GST Amount: <input type="text" id="gstamt" disabled></h3>
+    <h3>Total Amount: <input type="text" id="totalamt" disabled></h3>
+
+<script>
+    function calculateGST() {
+    const amt = parseFloat(document.getElementById("amt").value);
+    const gst = parseFloat(document.getElementById("gst").value);
+
+    if (isNaN(amt) || isNaN(gst)) {
+        alert("Please enter both amt and GST rate");
+        return;
+    }
+
+    const gstamt = (amt * gst) / 100;
+    const totalamt = amt + gstamt;
+
+    document.getElementById("gstamt").value = gstamt.toFixed(2);
+    document.getElementById("totalamt").value = totalamt.toFixed(2);
+    }
+</script>
+</body>
+</html>
