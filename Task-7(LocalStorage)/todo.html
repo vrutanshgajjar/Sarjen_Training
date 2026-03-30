@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        let tasks = JSON.parse(localStorage.getItem("tasks")||"[]");
+
+        function create(){
+            let input = document.getElementById("create").value;
+            if(input==="") return;
+            tasks.push(input);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            document.getElementById("create").value = "";
+            showTasks();
+        }
+        function edit(i){
+            let edittask = prompt("Edit task:", tasks[i]);
+            if(edittask !== null && edittask !== ""){
+                tasks[i] = edittask;
+                localStorage.setItem("tasks", JSON.stringify(tasks));
+                showTasks();
+            }          
+        }
+        function del(i){
+            tasks.splice(i,1)
+            localStorage.setItem("tasks", JSON.stringify(tasks))
+            showTasks()
+        }
+        function showTasks(){
+            let p = document.getElementById("result");
+            p.innerHTML = "";
+            for(let i = 0; i < tasks.length; i++){
+            p.innerHTML += tasks[i] + 
+            `  <button onclick="edit(${i})">Edit</button>` +
+            `  <button onclick="del(${i})">Delete</button><br>`;
+         }
+        }
+        showTasks();
+    </script>
+</head>
+<body>
+    <h1>TODO List</h1>
+    <input type="textbox" placeholder="Create Task" id="create"><br><br>
+    <button onclick="create()">Add Task</button>
+
+    <br>
+    <p id="result"></p>
+</body>
+</html>

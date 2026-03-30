@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function increment(){
+            let a = localStorage.getItem("count")
+            if(a==null){
+                a=0
+            }
+            a = parseInt(a)+1
+            localStorage.setItem("count",a)
+            document.getElementById("result").innerHTML = a;
+        }
+        function decrement(){
+            let a = localStorage.getItem("count")
+            if(a==null){
+                a=0
+            }
+            a = parseInt(a)-1
+            localStorage.setItem("count",a)
+            document.getElementById("result").innerHTML = a;
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="Increment" onclick="increment()">
+    <input type="button" value="Decrement" onclick="decrement()">
+    <p id="result"></p>
+</body>
+</html>

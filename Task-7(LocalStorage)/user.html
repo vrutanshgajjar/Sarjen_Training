@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User System (LocalStorage)</title>
+<style>
+body{
+    font-family:Arial;
+    text-align:center;
+    margin-top:40px;
+}
+
+input{
+    padding:8px;
+    margin:5px;
+}
+
+button{
+    padding:8px 15px;
+    margin:5px;
+}
+
+.box{
+    border:1px solid #ccc;
+    width:300px;
+    margin:auto;
+    padding:20px;
+    margin-bottom:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>User System</h2>
+<div class="box" id="signupBox">
+    <h3>Signup</h3>
+    <input id="su_name" placeholder="Name"><br>
+    <input id="su_email" placeholder="Email"><br>
+    <input id="su_pass" type="password" placeholder="Password"><br>
+    <button onclick="signup()">Signup</button>
+</div>
+
+<div class="box" id="loginBox">
+    <h3>Login</h3>
+    <input id="li_email" placeholder="Email"><br>
+    <input id="li_pass" type="password" placeholder="Password"><br>
+    <button onclick="login()">Login</button>
+</div>
+
+<div class="box" id="profileBox" style="display:none">
+    <h3>Profile</h3>
+    <p>Name: <span id="p_name"></span></p>
+    <p>Email: <span id="p_email"></span></p>
+
+    <h4>Update Name</h4>
+    <input id="up_name" placeholder="New Name">
+    <button onclick="updateProfile()">Update</button>
+
+    <h4>Change Password</h4>
+    <input id="old_pass" type="password" placeholder="Old Password"><br>
+    <input id="new_pass" type="password" placeholder="New Password"><br>
+    <button onclick="changePassword()">Change</button>
+
+    <br><br>
+    <button onclick="deleteAccount()">Delete</button>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+
+const getUsers = () => JSON.parse(localStorage.getItem("users")) || [];
+const saveUsers = (users) => localStorage.setItem("users", JSON.stringify(users));
+
+function signup(){
+    let name = su_name.value.trim();
+    let email = su_email.value.trim();
+    let pass = su_pass.value;
+
+    if(!name || !email || !pass){
+        alert("Fill all fields");
+        return;
+    }
+
+    let users = getUsers();
+
+    if(users.find(u => u.email === email)){
+        alert("User already exists");
+        return;
+    }
+
+    users.push({name,email,pass});
+    saveUsers(users);
+
+    alert("Signup Successful");
+}
+
+function login(){
+    let email = li_email.value;
+    let pass = li_pass.value;
+
+    let user = getUsers().find(u => u.email === email && u.pass === pass);
+
+    if(!user){
+        alert("Invalid Login");
+        return;
+    }
+
+    localStorage.setItem("loggedUser", email);
+    showProfile();
+}
+function showProfile(){
+    let email = localStorage.getItem("loggedUser");
+    if(!email) return;
+
+    let user = getUsers().find(u => u.email === email);
+
+    if(user){
+        p_name.innerText = user.name;
+        p_email.innerText = user.email;
+    }
+
+    signupBox.style.display="none";
+    loginBox.style.display="none";
+    profileBox.style.display="block";
+}
+function updateProfile(){
+    let newName = up_name.value.trim();
+    let email = localStorage.getItem("loggedUser");
+
+    let users = getUsers();
+
+    let user = users.find(u => u.email === email);
+    if(user){
+        user.name = newName;
+    }
+
+    saveUsers(users);
+    alert("Updated");
+    showProfile();
+}
+
+function changePassword(){
+    let oldPass = old_pass.value;
+    let newPass = new_pass.value;
+
+    let email = localStorage.getItem("loggedUser");
+    let users = getUsers();
+
+    let user = users.find(u => u.email === email);
+
+    if(user.pass !== oldPass){
+        alert("Wrong old password");
+        return;
+    }
+
+    user.pass = newPass;
+    saveUsers(users);
+
+    alert("Password Changed");
+}
+
+function deleteAccount(){
+    let email = localStorage.getItem("loggedUser");
+
+    let users = getUsers().filter(u => u.email !== email);
+
+    saveUsers(users);
+    localStorage.removeItem("loggedUser");
+
+    alert("Deleted");
+    location.reload();
+}
+
+function logout(){
+    localStorage.removeItem("loggedUser");
+    location.reload();
+}
+
+showProfile();
+</script>
+
+</body>
+</html>

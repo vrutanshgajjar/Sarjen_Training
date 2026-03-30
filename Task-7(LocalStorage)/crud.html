@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD LocalStorage</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        input {
+            margin: 5px;
+            padding: 6px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 6px 10px;
+        }
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>User CRUD</h2>
+
+<input id="name" placeholder="Name">
+<input id="city" placeholder="City">
+<input id="phone" placeholder="Phone">
+<br>
+<button onclick="save()">Save</button>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="data"></tbody>
+</table>
+
+<script>
+    let editIndex = -1;
+
+    function getData(){
+        return JSON.parse(localStorage.getItem("users")) || [];
+    }
+
+    function setData(data){
+        localStorage.setItem("users", JSON.stringify(data));
+    }
+
+    function display(){
+        let users = getData();
+        let tbody = document.getElementById("data");
+        tbody.innerHTML = "";
+
+        users.forEach((u, i) => {
+            tbody.innerHTML += `
+                <tr>
+                    <td>${u.name}</td>
+                    <td>${u.city}</td>
+                    <td>${u.phone}</td>
+                    <td>
+                        <button onclick="edit(${i})">Edit</button>
+                        <button onclick="del(${i})">Delete</button>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    function save(){
+        let name = document.getElementById("name").value;
+        let city = document.getElementById("city").value;
+        let phone = document.getElementById("phone").value;
+
+        if(!name || !city || !phone){
+            alert("Fill all fields");
+            return;
+        }
+
+        let users = getData();
+
+        if(editIndex === -1){
+            users.push({name, city, phone});
+        } else {
+            users[editIndex] = {name, city, phone};
+            editIndex = -1;
+        }
+
+        setData(users);
+        display();
+
+        document.getElementById("name").value = "";
+        document.getElementById("city").value = "";
+        document.getElementById("phone").value = "";
+    }
+
+    function edit(i){
+        let users = getData();
+
+        document.getElementById("name").value = users[i].name;
+        document.getElementById("city").value = users[i].city;
+        document.getElementById("phone").value = users[i].phone;
+
+        editIndex = i;
+    }
+
+    function del(i){
+        let users = getData();
+        users.splice(i,1);
+        setData(users);
+        display();
+    }
+
+    display();
+</script>
+
+</body>
+</html>
